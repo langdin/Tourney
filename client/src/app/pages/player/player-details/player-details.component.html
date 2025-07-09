@@ -1,0 +1,164 @@
+<!-- <div class="container mt-3 mb-5">
+    <h3 class="text-center">{{ title }}</h3>
+    <div class="row justify-content-center">
+      <div class="col-md-offset-3 col-md-8">
+        <form #form="ngForm" autocomplete="off" class="form" (submit)="onDetailsPageSubmit()">
+          <fieldset class="form-group">
+            <label for="NameTextField">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="NameTextField"
+              placeholder="Enter Player's Name"
+              name="name"
+              [(ngModel)]="player.name"
+              value="{{ player.name }}"
+              required
+              #name="ngModel"
+            />
+            <span
+              class="badge badge-danger"
+              *ngIf="name.errors?.required && name.touched"
+            >
+              player name is required
+            </span>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="PriorityTextField">Number of Points</label>
+            <input
+              type="number"
+              class="form-control"
+              id="ScoreTextField"
+              placeholder="Enter Player's Score"
+              name="score"
+              [(ngModel)]="score"
+              value="{{ score }}"
+              required
+              #num="ngModel"
+            />
+            <span
+            class="badge badge-danger"
+            *ngIf="num.errors?.required && num.touched"
+            >
+              Number of points is required
+            </span>
+            <span
+            class="badge badge-danger && num.touched"
+            *ngIf="num.value < 0"
+            >
+              Number of points can not be a negative number
+            </span>
+          </fieldset>
+
+          <fieldset class="form-group text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid || num.value < 0">
+              <i class="fa fa-edit"></i>
+              {{ title }}
+            </button>
+            <a [routerLink]="['/manage_bout',boutId]" class="btn btn-warning mx-1"
+              ><i class="fa fa-undo"></i>
+              Cancel
+            </a>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+<div
+  class="modal fade text-center"
+  id="modalDetails"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-primary" id="exampleModalLabel">
+          <i class="far fa-address-card"></i> {{ title }}
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="justify-content-center">
+          <form #form="ngForm" autocomplete="off" class="form">
+            <fieldset class="form-group">
+              <label for="NameTextField">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="NameTextField"
+                placeholder="Enter Player's Name"
+                name="name"
+                [(ngModel)]="player.name"
+                value="{{ player.name }}"
+                required
+                #name="ngModel"
+              />
+              <span
+                class="badge badge-danger"
+                *ngIf="name.errors?.required && name.touched"
+              >
+                player name is required
+              </span>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="PriorityTextField">Number of Points</label>
+              <input
+                type="number"
+                class="form-control"
+                id="ScoreTextField"
+                placeholder="Enter Player's Score"
+                name="score"
+                [(ngModel)]="score"
+                value="{{ score }}"
+                required
+                #num="ngModel"
+              />
+              <span
+                class="badge badge-danger"
+                *ngIf="num.errors?.required && num.touched"
+              >
+                Number of points is required
+              </span>
+              <span
+                class="badge badge-danger && num.touched"
+                *ngIf="num.value < 0"
+              >
+                Number of points can not be a negative number
+              </span>
+            </fieldset>
+
+            <fieldset class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                (click)="onDetailsPageSubmit()"
+                [disabled]="form.invalid || num.value < 0"
+              >
+                {{ title }}
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <h2 class="text-center">LOGIN</h2>
+  <div class="row">
+    <div class="container col-md-4">
+      <form autocomplete="off" #form="ngForm" (submit)="login()">
+        <fieldset class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="user.username"
+            placeholder="Enter Username"
+            id="username"
+            required
+            autofocus
+            autocomplete="off"
+            #username="ngModel"
+          />
+          <span
+            class="badge badge-danger"
+            *ngIf="username.errors?.required && username.touched"
+          >
+            the username is required
+          </span>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="user.password"
+            placeholder="Enter Password"
+            id="password"
+            required
+            autocomplete="off"
+            #password="ngModel"
+          />
+          <span
+            class="badge badge-danger"
+            *ngIf="password.errors?.required && password.touched"
+          >
+            the password is required
+          </span>
+          <p style="color: rgb(9, 54, 68)">
+            or
+            <a routerLink="/register" style="color: rgb(30,178,255)"
+              >Register Here</a
+            >
+          </p>
+        </fieldset>
+        <fieldset class="form-group text-center">
+          <input
+            type="submit"
+            class="btn btn-primary mr-1"
+            value="Login"
+            [disabled]="form.invalid"
+          />
+          <a routerLink="/home">
+            <input
+              type="button"
+              class="btn btn-warning"
+              value="Cancel"
+            />
+          </a>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

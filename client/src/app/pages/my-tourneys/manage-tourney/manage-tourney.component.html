@@ -1,0 +1,31 @@
+<div class="container mt-3 mb-5 pb-5">
+  <h3 class="text-center">{{ tourney.name }}</h3>
+  <div class="text-center">
+    <p>Description: {{ tourney.description }}</p>
+    <p>Number of Participants: {{ tourney.numberOfPlayers }}</p>
+    <p>Status: {{ tourney.status }}</p>
+  </div>
+  <hr />
+  <div class="container">
+    <button class="btn btn-light" role="button" [disabled]="bouts.length > 0" (click)="addFirstBout()">
+      <i class="fa fa-plus-circle"></i> Add First Bout
+    </button>
+    <div class="row">
+        <div class="col-md-4 mt-3 mb-3" *ngFor="let bout of bouts; let last = last">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Round {{ bout.number }}</h5>
+              <a routerLink="/manage_bout/{{ bout._id }}" class="btn btn-primary mr-1">Go</a>
+              <!-- <a *ngIf="last" routerLink="/manage_bout/delete/{{ tourneyId }}/{{ bout._id }}" class="btn btn-danger">Delete</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <a routerLink="/my_tourneys" class="btn btn-secondary mx-1"
+            ><i class="fa fa-undo"></i>
+            Back
+          </a>
+        </div>
+    </div>
+  </div>
+</div>

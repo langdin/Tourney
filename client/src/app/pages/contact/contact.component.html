@@ -1,0 +1,84 @@
+<div class="container mb-5">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h4 class="display-6 text-center">Drop us a line</h4>
+      <form #form="ngForm" autocomplete="off" class="form mt-3" (submit)="sendMail()">
+        <fieldset class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="nameTextField"
+            placeholder="Enter Your Name"
+            name="name"
+            [(ngModel)]="name"
+            required
+            #nameTxt="ngModel"
+          />
+          <span
+            class="badge badge-danger"
+            *ngIf="nameTxt.errors?.required && nameTxt.touched"
+          >
+            Name is required
+          </span>
+        </fieldset>
+        <fieldset class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              id="emailTextField"
+              placeholder="Enter Your Email"
+              name="email"
+              [(ngModel)]="email"
+              required
+              #emailTxt="ngModel"
+            />
+            <span
+              class="badge badge-danger"
+              *ngIf="emailTxt.errors?.required && emailTxt.touched"
+            >
+              Email is required
+            </span>
+          </fieldset>
+        <fieldset class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="subjectTextField"
+            placeholder="Enter Subject"
+            name="subject"
+            [(ngModel)]="subject"
+            required
+            #subjectTxt="ngModel"
+          />
+        </fieldset>
+        <fieldset class="form-group">
+            <textarea
+              rows="5"
+              class="form-control"
+              id="messageTextField"
+              placeholder="Enter Your Message"
+              name="message"
+              [(ngModel)]="message"
+              required
+              #messageTxt="ngModel"
+            ></textarea>
+            <span
+              class="badge badge-danger"
+              *ngIf="messageTxt.errors?.required && messageTxt.touched"
+            >
+              Message is required
+            </span>
+          </fieldset>
+          <fieldset class="form-group text-center">
+              <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                <i class="fa fa-edit"></i>
+                Send
+              </button>
+            </fieldset>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <img class="img" src="../assets/contact.png" alt="contact us">
+    </div>
+  </div>
+</div>

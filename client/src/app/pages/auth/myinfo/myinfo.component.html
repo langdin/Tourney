@@ -1,0 +1,77 @@
+<div class="container">
+    <h3 class="text-center mt-4">My Personal Information</h3>
+    <div class="row">
+      <div class="container col-md-4">
+        <form autocomplete="off" #form="ngForm" (submit)="updateUser()">
+          <fieldset class="form-group">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="username"
+              placeholder="Enter Username"
+              id="username"
+              required
+              autocomplete="off"
+              [(ngModel)]="user.username"
+              #username="ngModel"
+            />
+            <span
+              class="badge badge-danger"
+              *ngIf="username.errors?.required && username.touched"
+            >
+              the username is required
+            </span>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="Enter Email"
+              id="email"
+              required
+              autocomplete="off"
+              [(ngModel)]="user.email"
+              #email="ngModel"
+            />
+            <span
+              class="badge badge-danger"
+              *ngIf="email.errors?.required && email.touched"
+            >
+              the email is required
+            </span>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="displayName">Dispaly Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="displayName"
+              placeholder="Enter Display Name"
+              id="displayName"
+              required
+              autocomplete="off"
+              [(ngModel)]="user.displayName"
+              #displayName="ngModel"
+            />
+            <span
+              class="badge badge-danger"
+              *ngIf="displayName.errors?.required && displayName.touched"
+            >
+              the display name is required
+            </span>
+          </fieldset>
+          <fieldset class="form-group text-center">
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Update"
+              [disabled]="form.invalid"
+            />
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>

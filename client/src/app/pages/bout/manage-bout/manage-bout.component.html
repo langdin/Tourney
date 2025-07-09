@@ -1,0 +1,145 @@
+<div class="container mt-3 mb-5 pb-5">
+  <div class="text-center">
+    <h3>Round {{ boutObj.number }}</h3>
+    <p>Maximum number of participants: {{ boutObj.maxNumOfPlayers }}</p>
+  </div>
+  <div class="container">
+    <div class="mt-3 mb-3">
+      <a
+        data-toggle="modal"
+        data-target="#modalDetails"
+        class="btn btn-light"
+        role="button"
+        *ngIf="players.length != boutObj.maxNumOfPlayers"
+        (click)="
+          playerDetails.clearForm(); callPlayerDetails('Add Participant')
+        "
+      >
+        <i class="fa fa-plus-circle"></i> Add participant
+      </a>
+    </div>
+    <div class="row bout">
+      <div class="col-md-6 col-6 player-p-m">
+        <div
+          *ngFor="let player of players; let odd = odd; let last = last"
+          [ngClass]="{ right_border: odd }"
+        >
+          <div class="margin-box col-md-12" *ngIf="last && !odd"></div>
+          <div class="player row player-p-m">
+            <div class="player-body col-md-12">
+              <div class="mt-4">
+                <span class="font-weight-bold player-name">
+                  {{ player.name }}
+                </span>
+                <a
+                  data-toggle="modal"
+                  data-target="#modalDetails"
+                  role="button"
+                  class="badge badge-secondary text-light edit"
+                  (click)="
+                    playerDetails.clearForm();
+                    callPlayerDetails('Edit Participant');
+                    playerDetails.getPlayer(player._id)
+                  "
+                >
+                  Edit
+                </a>
+              </div>
+              <div>
+                <span class="player-score badge badge-secondary">
+                  Score: {{ player.points[boutObj.number - 1].score }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-6 no-p-m">
+        <div
+          *ngFor="
+            let player of players;
+            let last = last;
+            let i = index;
+            let even = even
+          "
+        >
+          <div class="margin-box col-md-12"></div>
+          <div class="bracket" *ngIf="even">
+            <div class="margin-box col-md-12"></div>
+            <div class="player-body col-md-12">
+              <div class="text-right">
+                <div class="dropdown">
+                  <button
+                    [disabled]="this.players.length === 1 || nextBoutId"
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {{ ddNames[i] }}
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <button
+                      class="dropdown-item"
+                      (click)="selectWinner(players[i])"
+                    >
+                      {{ players[i].name }}
+                    </button>
+                    <button
+                      class="dropdown-item"
+                      *ngIf="players[i + 1]"
+                      (click)="selectWinner(players[i + 1])"
+                    >
+                      {{ players[i + 1].name }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 text-right mt-4">
+        <a
+          routerLink="/manage_tourney/{{ this.boutObj.tourneyId }}"
+          class="btn btn-secondary mx-1"
+          ><i class="fa fa-undo"></i>
+          Back
+        </a>
+        <button
+          class="btn btn-success"
+          *ngIf="
+            this.players.length === this.boutObj.maxNumOfPlayers &&
+            boutObj.maxNumOfPlayers > 1
+          "
+          (click)="confirmWinners()"
+        >
+          {{ btnText }}
+        </button>
+        <br />
+        <span
+          class="badge badge-danger"
+          *ngIf="
+            this.winners.length < 2 &&
+            this.clicked &&
+            (this.ddNames[0] === this.ddNames[1] ||
+              this.ddNames[2] === this.ddNames[3]) &&
+            boutObj.maxNumOfPlayers > 1
+          "
+          >Please, choose winners.</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<app-player-details
+  title="{{ title }}"
+  [boutId]="boutId"
+  #playerDetails
+  (getPlayers)="getBout()"
+></app-player-details>

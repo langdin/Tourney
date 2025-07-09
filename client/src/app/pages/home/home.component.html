@@ -1,0 +1,49 @@
+<div class="container mb-5">
+  <div class="jumbotron p-4 p-md-5 text-dark rounded bg-light text-center">
+      <div class="col-md-12 px-0 ">
+        <h1 class="display-4 font-italic">Hello!</h1>
+        <p class="lead mb-0"><a routerLink="/#" class="text-dark font-weight-bold">We are helping to manage Tournament Brackets...</a></p>
+      </div>
+  </div>
+  <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col-md-7 p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Public</strong>
+            <h3 class="mb-0">All Tourneys</h3>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a routerLink="/all_tourneys" class="stretched-link">Go</a>
+          </div>
+          <div class="col-md-5 d-none d-lg-block img-right">
+            <img class="card-img" src="../assets/all-tourneys.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isLoggedIn()" class="col-md-6">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success">Private</strong>
+            <h3 class="mb-0">My Tourneys</h3>
+            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a routerLink="/my_tourneys" class="stretched-link">Go</a>
+          </div>
+          <div class="col-md-5 d-none d-lg-block img-right">
+            <img class="card-img" src="../assets/my.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!isLoggedIn()" class="col-md-6">
+          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-success">Private</strong>
+              <h3 class="mb-0">Create your own</h3>
+              <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+              <a routerLink="/login" class="stretched-link">Login</a>
+            </div>
+            <div class="col-md-5 d-none d-lg-block img-right">
+                <img class="card-img" src="../assets/login.png" alt="">
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

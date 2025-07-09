@@ -1,0 +1,24 @@
+<div class="container mb-5">
+  <div class="jumbotron text-center bg-light justify-content-center">
+    <h1>All Tourneys</h1>
+    <div class="row justify-content-center">
+      <input type="text" class="form-control search col-md-6" [(ngModel)]="search" placeholder="Search by Tourney name" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 mb-3" *ngFor="let tourney of tourneys | search: search.toLowerCase()">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ tourney.name }}</h5>
+          <p class="card-text">{{ tourney.description }}</p>
+          <p class="card-text" [ngClass]="{
+            'text-success': tourney.status === 'Active',
+            'text-warning': tourney.status === 'Completed',
+            'text-secondary': tourney.status === 'Not Active'
+          }">{{ tourney.status }}</p>
+          <a routerLink="/view_tourney/{{ tourney._id }}" class="btn btn-secondary float-right"><i class="fas fa-eye"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
