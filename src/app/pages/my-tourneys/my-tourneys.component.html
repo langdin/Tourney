@@ -1,0 +1,137 @@
+<div class="container mt-3 mb-5">
+  <h3 class="text-left">My Tourneys</h3>
+  <a
+    data-toggle="modal"
+    data-target="#modalDetails"
+    class="btn btn-light"
+    role="button"
+    (click)="
+      tourneyDetails.clearForm(); callTourneyDetails('Add Tourney', false)
+    "
+  >
+    <i class="fa fa-plus-circle"></i> Add a tourney
+  </a>
+  <div class="row">
+    <div class="col-md-offset-4 col-md-12">
+      <div class="row mt-3">
+        <div
+          class="col-md-4 mt-1 mb-1"
+          *ngFor="let tourney of tourneys; let i = index"
+        >
+          <div class="card" style="width: 18rem;">
+            <div class="card-body m-1">
+              <div class="text">
+                <h4 class="card-title">{{ tourney.name }}</h4>
+                <h6
+                  class="card-subtitle mb-2"
+                  [ngClass]="{
+                    'text-success': tourney.status === 'Active',
+                    'text-warning': tourney.status === 'Completed',
+                    'text-secondary': tourney.status === 'Not Active'
+                  }"
+                >
+                  {{ tourney.status }}
+                </h6>
+                <p class="card-text">{{ tourney.description }}</p>
+              </div>
+
+              <div class="buttons">
+                <a
+                  routerLink="/manage_tourney/{{ tourney._id }}"
+                  class="btn btn-secondary btn-block"
+                >
+                  <i class="fas fa-tools"></i>
+                </a>
+                <a
+                  data-toggle="modal"
+                  data-target="#modalDetails"
+                  class="btn btn-secondary btn-block text-white"
+                  (click)="
+                    tourneyDetails.clearForm();
+                    callTourneyDetails('Edit Tourney', true);
+                    tourneyDetails.getTourney(tourney._id)
+                  "
+                >
+                  <i class="fas fa-pencil-ruler"></i>
+                </a>
+                <a
+                  data-toggle="modal"
+                  data-target="#modalConfirm"
+                  class="btn btn-secondary btn-block text-light"
+                  (click)="getId(tourney._id)"
+                >
+                  <i class="fas fa-trash"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <app-modal-delete
+      tourneyId="{{ this.tourneyId }}"
+      (getTourneys)="displayUserTourneys()"
+    ></app-modal-delete>
+    <!-- <div
+      class="modal fade"
+      id="modalConfirm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-danger" id="exampleModalLabel">
+              <i class="fas fa-exclamation-triangle"></i> {{ modalHeader }}
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {{ modalBody }}
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a
+              *ngIf="modalBtn !== 'Ok'"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              routerLink="/my_tourneys/delete/{{ tourneyId }}"
+              >Delete</a
+            >
+            <button
+              *ngIf="modalBtn === 'Ok'"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              {{ modalBtn }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <app-my-tourney-details
+      title="{{ title }}"
+      [isDisabled]="isDisabled"
+      #tourneyDetails
+      (getTourneys)="displayUserTourneys()"
+    ></app-my-tourney-details>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+.player {
+  border-bottom: 1px solid black;
+  width: 100%;
+  height: 6em;
+}
+
+.right_border {
+  border-right: 1px solid black;
+}
+
+.bracket {
+  border-bottom: 1px solid black;
+  width: 100%;
+  height: 6em;
+}
+
+.margin-box {
+  height: 3em;
+}
+
+.player-p-m {
+  padding-right: 0 !important;
+  margin: 0 !important;
+}
+
+.no-p-m {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.player-score {
+  padding: .375rem .75rem;
+}
+
+.player-name {
+  font-size: 1.2em;
+  margin-right: 10px;
+  color: #006699;
+}
+
+.player-body {
+  height: 6em;
+}
+
+.player-winnner-name {
+  font-size: 1.4em;
+  margin-right: 20px;
+  color: #006699;
+}
+
+.edit {
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+<div class="container mb-5 pb-5">
+  <div class="brackets">
+    <div class="round" *ngFor="let round of rounds, let i = index; ">
+      <div *ngFor="let player of round; let odd = odd; let last = last; let j = index" [ngClass]="{ right_border: odd }">
+
+        <div *ngIf="i==1">
+            <div *ngIf="j!=0">
+              <div class="margin-box margin-box-2"></div>
+            </div>
+            <div *ngIf="j==0">
+                <div class="margin-box margin-box-1"></div>
+              </div>
+        </div>
+        <div *ngIf="i==2">
+            <div *ngIf="j!=0">
+              <div class="margin-box margin-box-4"></div>
+            </div>
+            <div *ngIf="j==0">
+                <div class="margin-box margin-box-3"></div>
+              </div>
+        </div>
+        <div *ngIf="i==3">
+            <div *ngIf="j!=0">
+              <div class="margin-box margin-box-6"></div>
+            </div>
+            <div *ngIf="j==0">
+                <div class="margin-box margin-box-5"></div>
+              </div>
+        </div>
+        <div *ngIf="i==4">
+            <div *ngIf="j!=0">
+              <div class="margin-box margin-box-8"></div>
+            </div>
+            <div *ngIf="j==0">
+                <div class="margin-box margin-box-7"></div>
+              </div>
+        </div>
+        <div class="player">
+          <div class="name">
+            {{ player.name }}
+          </div>
+          <div class="score">
+            {{ player.points[i].score }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

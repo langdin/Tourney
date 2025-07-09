@@ -1,0 +1,101 @@
+.card {
+  height: 11em;
+}
+
+.card :not(:hover) .buttons {
+  /* top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  animation: slide-up 0.3s ease-out; */
+  display: none;
+
+}
+
+.card :not(:hover) .text {
+  display: block;
+
+  animation: slide-down 0.3s ease-out;
+  -webkit-animation: slide-down 0.3s ease-out;
+  -moz-animation: slide-down 0.3s ease-out;
+}
+
+.card :hover .buttons {
+  display: block;
+
+  animation: slide-down 0.3s ease-out;
+  -webkit-animation: slide-down 0.3s ease-out;
+  -moz-animation: slide-down 0.3s ease-out;
+}
+
+.card :hover .text {
+  display: none;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ @keyframes slide-up {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slide-down {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+/* @-webkit-keyframes slide-up {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+  }
+} */
+
+@-moz-keyframes slide-down {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+}
+
+/* @-moz-keyframes slide-up {
+  0% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: translateY(-100%);
+  }
+} */
