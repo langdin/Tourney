@@ -26,6 +26,7 @@ export class PlayerDetailsComponent implements OnInit {
   boutNum: number; // number of current bout
   // score in current bout for display
   score: number;
+  age: number;
   @Output() getPlayers: EventEmitter<any> = new EventEmitter();
 
   constructor(
